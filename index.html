@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ارمي الزهر واكسب | طلباتك هنا</title>
+  <meta name="description" content="عرض طلباتك هنا: ارمي الزهر واكسب هديتك فورًا" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+
+    :root{
+      --black:#070505;
+      --dark:#120807;
+      --red:#e33322;
+      --gold:#ffc44d;
+      --cream:#fff4db;
+      --muted:#c9bda7;
+      --glass:rgba(255,255,255,.08);
+      --border:rgba(255,196,77,.28);
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      min-height:100%;
+      font-family:"Cairo",system-ui,sans-serif;
+      background:var(--black);
+      color:var(--cream);
+      overflow-x:hidden;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at 50% 0%, rgba(227,51,34,.28), transparent 35%),
+        radial-gradient(circle at 20% 20%, rgba(255,196,77,.18), transparent 28%),
+        linear-gradient(180deg,#170806 0%,#070505 60%,#020202 100%);
+    }
+
+    .bg-glow{
+      position:fixed;
+      inset:auto -20% -30% -20%;
+      height:420px;
+      background:radial-gradient(circle, rgba(227,51,34,.35), transparent 58%);
+      filter:blur(25px);
+      pointer-events:none;
+      animation:pulse 4s infinite alternate;
+    }
+
+    .smoke{
+      position:fixed;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:rgba(255,255,255,.08);
+      filter:blur(50px);
+      pointer-events:none;
+      opacity:.45;
+    }
+
+    .smoke-1{
+      top:12%;
+      left:-60px;
+      animation:float 8s ease-in-out infinite;
+    }
+
+    .smoke-2{
+      bottom:10%;
+      right:-80px;
+      animation:float 10s ease-in-out infinite reverse;
+    }
+
+    .page{
+      width:min(980px,92vw);
+      margin:auto;
+      padding:28px 0 36px;
+      position:relative;
+      z-index:1;
+    }
+
+    .hero{
+      min-height:82vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      padding:22px 14px 34px;
+      border:1px solid var(--border);
+      border-radius:32px;
+      background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+      box-shadow:0 25px 70px rgba(0,0,0,.42), inset 0 0 45px rgba(255,196,77,.04);
+      backdrop-filter:blur(14px);
+    }
+
+    .brand-card{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+      padding:10px 16px;
+      border-radius:18px;
+      background:rgba(0,0,0,.28);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .logo-mark{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg,var(--gold),#9b5d05);
+      color:#1b0c02;
+      font-weight:900;
+      font-size:30px;
+      box-shadow:0 10px 28px rgba(255,196,77,.24);
+    }
+
+    .eyebrow{
+      margin:0;
+      color:var(--gold);
+      font-size:13px;
+      line-height:1;
+    }
+
+    h1{
+      margin:0;
+      font-size:24px;
+      line-height:1.2;
+      font-weight:900;
+    }
+
+    .offer-badge{
+      display:inline-flex;
+      margin:8px 0 10px;
+      padding:9px 15px;
+      border-radius:999px;
+      background:rgba(227,51,34,.18);
+      border:1px solid rgba(227,51,34,.45);
+      color:#ffd7d2;
+      font-weight:800;
+    }
+
+    h2{
+      font-size:clamp(38px,8vw,82px);
+      line-height:1.05;
+      margin:6px 0 12px;
+      font-weight:900;
+      text-shadow:0 5px 28px rgba(227,51,34,.45);
+    }
+
+    h2 span{color:var(--gold)}
+
+    .subtitle{
+      max-width:680px;
+      margin:0 auto 20px;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.8;
+    }
+
+    .subtitle strong{color:var(--cream)}
+
+    .dice-stage{
+      height:230px;
+      width:230px;
+      display:grid;
+      place-items:center;
+      perspective:900px;
+      margin:10px auto 0;
+      position:relative;
+    }
+
+    .dice{
+      width:122px;
+      height:122px;
+      position:relative;
+      transform-style:preserve-3d;
+      transform:rotateX(-18deg) rotateY(28deg);
+      transition:transform 1.1s cubic-bezier(.15,.8,.2,1);
+    }
+
+    .face{
+      position:absolute;
+      width:122px;
+      height:122px;
+      border-radius:24px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg,#fff9ea,#ffc44d 60%,#b9680a);
+      color:#260900;
+      font-weight:900;
+      font-size:31px;
+      line-height:1.05;
+      border:2px solid rgba(255,255,255,.6);
+      box-shadow:
+        inset 0 -10px 24px rgba(72,25,0,.25),
+        inset 0 10px 25px rgba(255,255,255,.35);
+    }
+
+    .front{transform:translateZ(61px)}
+    .back{transform:rotateY(180deg) translateZ(61px)}
+    .right{transform:rotateY(90deg) translateZ(61px)}
+    .left{transform:rotateY(-90deg) translateZ(61px)}
+    .top{transform:rotateX(90deg) translateZ(61px)}
+    .bottom{transform:rotateX(-90deg) translateZ(61px)}
+
+    .dice-shadow{
+      position:absolute;
+      bottom:28px;
+      width:150px;
+      height:28px;
+      background:rgba(0,0,0,.5);
+      filter:blur(14px);
+      border-radius:50%;
+    }
+
+    .roll-btn{
+      border:0;
+      cursor:pointer;
+      margin-top:2px;
+      padding:17px 44px;
+      border-radius:999px;
+      background:linear-gradient(135deg,var(--red),#ff7a2b,var(--gold));
+      color:#1c0704;
+      font-size:22px;
+      font-weight:900;
+      box-shadow:0 16px 38px rgba(227,51,34,.38);
+      transition:transform .2s,filter .2s;
+      font-family:inherit;
+    }
+
+    .roll-btn:hover{
+      transform:translateY(-3px);
+      filter:saturate(1.1);
+    }
+
+    .roll-btn:disabled{
+      opacity:.65;
+      cursor:not-allowed;
+    }
+
+    .hint{
+      color:#a99d8c;
+      font-size:13px;
+      margin:15px 0 0;
+    }
+
+    .result-card{
+      margin:22px auto;
+      padding:24px;
+      border-radius:28px;
+      text-align:center;
+      border:1px solid var(--border);
+      background:linear-gradient(145deg,rgba(255,196,77,.16),rgba(227,51,34,.12));
+      box-shadow:0 20px 55px rgba(0,0,0,.34);
+    }
+
+    .hidden{display:none}
+
+    .win-label{
+      margin:0;
+      color:var(--gold);
+      font-weight:900;
+      font-size:18px;
+    }
+
+    .result-card h3{
+      font-size:34px;
+      margin:5px 0 5px;
+    }
+
+    .result-card p{color:var(--muted)}
+
+    .coupon{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      margin:18px auto;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(0,0,0,.25);
+      border:1px dashed rgba(255,196,77,.45);
+      max-width:380px;
+    }
+
+    .coupon span{color:var(--muted)}
+
+    .coupon strong{
+      color:var(--gold);
+      font-size:22px;
+      letter-spacing:1px;
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .actions a,
+    .actions button{
+      text-decoration:none;
+      border:0;
+      border-radius:14px;
+      padding:13px 18px;
+      font-weight:900;
+      cursor:pointer;
+      font-family:inherit;
+      font-size:15px;
+    }
+
+    .whatsapp{
+      background:#25d366;
+      color:#07120b;
+    }
+
+    .secondary{
+      background:var(--glass);
+      color:var(--cream);
+      border:1px solid rgba(255,255,255,.12)!important;
+    }
+
+    .rules{
+      margin-top:22px;
+      padding:22px;
+      border-radius:26px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .rules h3{
+      text-align:center;
+      margin:0 0 16px;
+      color:var(--gold);
+      font-size:26px;
+    }
+
+    .prizes-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+
+    .prize{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .prize b{
+      width:34px;
+      height:34px;
+      border-radius:11px;
+      display:grid;
+      place-items:center;
+      background:var(--gold);
+      color:#1b0803;
+    }
+
+    .prize span{font-weight:800}
+
+    footer{
+      text-align:center;
+      color:var(--muted);
+      padding:22px 0 0;
+    }
+
+    footer a{
+      color:var(--gold);
+      text-decoration:none;
+      font-weight:900;
+    }
+
+    .shake{animation:shake .5s linear}
+
+    @keyframes shake{
+      0%,100%{transform:translateX(0)}
+      20%{transform:translateX(-8px)}
+      40%{transform:translateX(8px)}
+      60%{transform:translateX(-5px)}
+      80%{transform:translateX(5px)}
+    }
+
+    @keyframes pulse{
+      from{opacity:.35;transform:scale(.95)}
+      to{opacity:.8;transform:scale(1.08)}
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-42px)}
+    }
+
+    @media(max-width:700px){
+      .page{
+        width:94vw;
+        padding-top:14px;
+      }
+
+      .hero{
+        border-radius:24px;
+        min-height:auto;
+      }
+
+      .subtitle{font-size:16px}
+
+      .dice-stage{height:210px}
+
+      .prizes-grid{grid-template-columns:1fr}
+
+      .result-card h3{font-size:27px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-glow"></div>
+  <div class="smoke smoke-1"></div>
+  <div class="smoke smoke-2"></div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="brand-card">
+        <div class="logo-mark">ط</div>
+        <div>
+          <p class="eyebrow">مطعم</p>
+          <h1>طلباتك هنا</h1>
+        </div>
+      </div>
+
+      <div class="offer-badge">🔥 عرض تفاعلي جديد</div>
+
+      <h2>
+        ارمي الزهر
+        <br>
+        <span>واكسب هديتك فورًا</span>
+      </h2>
+
+      <p class="subtitle">
+        أي أوردر بـ <strong>150 جنيه أو أكتر</strong> ليك رمية زهر مجانية.
+        اضغط على الزر وخلي الحظ يختار هديتك 😋
+      </p>
+
+      <div class="dice-stage" id="diceStage">
+        <div class="dice" id="dice" aria-label="3D Dice">
+          <div class="face front"><span>●</span></div>
+          <div class="face back"><span>● ●<br>● ●<br>● ●</span></div>
+          <div class="face right"><span>● ●<br>●</span></div>
+          <div class="face left"><span>● ●<br>● ●</span></div>
+          <div class="face top"><span>● ●</span></div>
+          <div class="face bottom"><span>● ●<br>● ●<br>●</span></div>
+        </div>
+        <div class="dice-shadow"></div>
+      </div>
+
+      <button class="roll-btn" id="rollBtn">
+        🎲 هز الزهر
+      </button>
+
+      <p class="hint">
+        ملحوظة: العرض داخل المطعم أو عند تأكيد الأوردر عبر واتساب.
+      </p>
+    </section>
+
+    <section class="result-card hidden" id="resultCard">
+      <p class="win-label">🎉 مبروك يا نجم</p>
+      <h3 id="prizeTitle">كسبت هدية</h3>
+      <p id="prizeDesc">صوّر الشاشة وابعتها لنا على واتساب لتأكيد الجائزة.</p>
+
+      <div class="coupon">
+        <span>كود الفوز</span>
+        <strong id="couponCode">TLB-0000</strong>
+      </div>
+
+      <div class="actions">
+        <a class="whatsapp" id="whatsappLink" target="_blank" rel="noopener">
+          ابعت النتيجة واتساب
+        </a>
+        <button class="secondary" id="shareBtn">شارك النتيجة</button>
+        <button class="secondary" id="againBtn">جرّب تاني</button>
+      </div>
+    </section>
+
+    <section class="rules">
+      <h3>الهدايا حسب الرقم</h3>
+
+      <div class="prizes-grid">
+        <div class="prize"><b>1</b><span>بيبسي مجاني 🥤</span></div>
+        <div class="prize"><b>2</b><span>بطاطس هدية 🍟</span></div>
+        <div class="prize"><b>3</b><span>خصم 15% 💸</span></div>
+        <div class="prize"><b>4</b><span>ساندوتش حواوشي 🔥</span></div>
+        <div class="prize"><b>5</b><span>ضعف البطاطس 😋</span></div>
+        <div class="prize"><b>6</b><span>دخول سحب وجبة مجانية 👑</span></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>📍 طلباتك هنا — أكل سخن وحظ نار</p>
+      <p>
+        واتساب:
+        <a href="https://wa.me/201030085653">01030085653</a>
+        |
+        <a href="https://wa.me/971503431662">0503431662</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const dice = document.getElementById("dice");
+    const rollBtn = document.getElementById("rollBtn");
+    const resultCard = document.getElementById("resultCard");
+    const prizeTitle = document.getElementById("prizeTitle");
+    const prizeDesc = document.getElementById("prizeDesc");
+    const couponCode = document.getElementById("couponCode");
+    const whatsappLink = document.getElementById("whatsappLink");
+    const shareBtn = document.getElementById("shareBtn");
+    const againBtn = document.getElementById("againBtn");
+    const diceStage = document.getElementById("diceStage");
+
+    const prizes = {
+      1: {
+        title: "بيبسي مجاني 🥤",
+        desc: "كسبت بيبسي مع الأوردر. صوّر الشاشة وابعتها لنا."
+      },
+      2: {
+        title: "بطاطس هدية 🍟",
+        desc: "بطاطس سخنة هدية من طلباتك هنا."
+      },
+      3: {
+        title: "خصم 15% 💸",
+        desc: "خصم 15% على أوردرك القادم من طلباتك هنا."
+      },
+      4: {
+        title: "ساندوتش حواوشي 🔥",
+        desc: "كسبت ساندوتش حواوشي عند تأكيد الأوردر."
+      },
+      5: {
+        title: "ضعف البطاطس 😋",
+        desc: "خد بطاطس دبل مع أوردرك."
+      },
+      6: {
+        title: "دخول سحب وجبة مجانية 👑",
+        desc: "دخلت سحب الوجبة المجانية الأسبوعية."
+      }
+    };
+
+    const rotations = {
+      1: "rotateX(0deg) rotateY(0deg)",
+      2: "rotateX(-90deg) rotateY(0deg)",
+      3: "rotateX(0deg) rotateY(-90deg)",
+      4: "rotateX(0deg) rotateY(90deg)",
+      5: "rotateX(90deg) rotateY(0deg)",
+      6: "rotateX(0deg) rotateY(180deg)"
+    };
+
+    let lastPrize = null;
+    let rolling = false;
+
+    function makeCoupon(num) {
+      const random = Math.floor(1000 + Math.random() * 9000);
+      return `TLB-${num}${random}`;
+    }
+
+    function vibrate() {
+      if (navigator.vibrate) {
+        navigator.vibrate([80, 50, 120]);
+      }
+    }
+
+    function rollSound() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(180, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.45);
+
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.5);
+      } catch(e) {}
+    }
+
+    function rollDice() {
+      if (rolling) return;
+
+      rolling = true;
+      rollBtn.disabled = true;
+      resultCard.classList.add("hidden");
+      diceStage.classList.add("shake");
+
+      vibrate();
+      rollSound();
+
+      const number = Math.floor(Math.random() * 6) + 1;
+
+      const spins = `
+        rotateX(${720 + Math.random() * 360}deg)
+        rotateY(${720 + Math.random() * 360}deg)
+        rotateZ(${360 + Math.random() * 180}deg)
+      `;
+
+      dice.style.transform = spins;
+
+      setTimeout(() => {
+        dice.style.transform = rotations[number];
+        diceStage.classList.remove("shake");
+      }, 650);
+
+      setTimeout(() => {
+        showResult(number);
+        rolling = false;
+        rollBtn.disabled = false;
+      }, 1450);
+    }
+
+    function showResult(number) {
+      lastPrize = prizes[number];
+      const code = makeCoupon(number);
+
+      prizeTitle.textContent = lastPrize.title;
+      prizeDesc.textContent = lastPrize.desc;
+      couponCode.textContent = code;
+
+      const msg =
+        `أنا لعبت زهر طلباتك هنا 🎲 وكسبت: ${lastPrize.title}%0A` +
+        `كود الفوز: ${code}%0A` +
+        `عاوز أكد الجائزة.`;
+
+      whatsappLink.href = `https://wa.me/201030085653?text=${msg}`;
+
+      resultCard.classList.remove("hidden");
+      resultCard.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+
+    async function shareResult() {
+      if (!lastPrize) return;
+
+      const text = `أنا كسبت ${lastPrize.title} من عرض زهر طلباتك هنا 🎲🔥`;
+
+      if (navigator.share) {
+        await navigator.share({
+          title: "عرض طلباتك هنا",
+          text,
+          url: location.href
+        });
+      } else {
+        await navigator.clipboard.writeText(text + " " + location.href);
+        shareBtn.textContent = "اتنسخت ✅";
+
+        setTimeout(() => {
+          shareBtn.textContent = "شارك النتيجة";
+        }, 1600);
+      }
+    }
+
+    rollBtn.addEventListener("click", rollDice);
+    againBtn.addEventListener("click", rollDice);
+    shareBtn.addEventListener("click", shareResult);
+  </script>
+</body>
+</html>
