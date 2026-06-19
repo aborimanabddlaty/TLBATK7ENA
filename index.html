@@ -46,6 +46,7 @@
 
     body {
       font-family: "Cairo", sans-serif;
+
       background:
         radial-gradient(
           circle at 15% 15%,
@@ -69,6 +70,10 @@
       color: inherit;
     }
 
+    img {
+      max-width: 100%;
+    }
+
     .container {
       width: min(1180px, 92%);
       margin: auto;
@@ -81,10 +86,11 @@
       top: 0;
       z-index: 100;
 
-      background: rgba(8, 8, 8, 0.82);
+      background: rgba(8, 8, 8, 0.84);
       backdrop-filter: blur(15px);
 
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom:
+        1px solid rgba(255, 255, 255, 0.08);
     }
 
     nav {
@@ -154,7 +160,7 @@
       transform: translateY(-3px);
     }
 
-    /* القسم الرئيسي */
+    /* العرض الرئيسي */
 
     .hero {
       padding: 70px 0 45px;
@@ -203,6 +209,8 @@
     }
 
     h1 span {
+      display: block;
+
       color: var(--gold);
 
       text-shadow:
@@ -391,6 +399,7 @@
 
     .meal-cards {
       display: grid;
+
       grid-template-columns:
         repeat(4, 1fr);
 
@@ -398,9 +407,7 @@
     }
 
     .meal-card {
-      padding: 25px 18px;
-
-      text-align: center;
+      overflow: hidden;
 
       border-radius: 23px;
 
@@ -427,34 +434,34 @@
         rgba(244, 180, 26, 0.4);
     }
 
-    .meal-icon {
-      width: 60px;
-      height: 60px;
+    .meal-card img {
+      display: block;
 
-      margin: 0 auto 15px;
+      width: 100%;
+      height: 190px;
 
-      display: grid;
-      place-items: center;
+      object-fit: cover;
 
-      border-radius: 18px;
-
-      font-size: 1.8rem;
-
-      background:
-        rgba(244, 180, 26, 0.12);
-
-      border:
-        1px solid rgba(244, 180, 26, 0.25);
+      transition: 0.45s;
     }
 
-    .meal-card h3 {
-      margin-bottom: 6px;
-      font-size: 1.07rem;
+    .meal-card:hover img {
+      transform: scale(1.08);
     }
 
-    .meal-card p {
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h3 {
+      margin-bottom: 7px;
+      font-size: 1.08rem;
+    }
+
+    .card-content p {
       color: var(--gray);
       font-size: 0.9rem;
+      line-height: 1.7;
     }
 
     /* قسم الطلب */
@@ -535,7 +542,7 @@
       background: var(--green);
       color: white;
 
-      font-size: 1.7rem;
+      font-size: 1.65rem;
 
       border:
         4px solid rgba(255, 255, 255, 0.17);
@@ -657,12 +664,12 @@
       }
 
       .meal-cards {
-        gap: 10px;
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
 
-      .meal-card {
-        padding: 19px 10px;
-        border-radius: 18px;
+      .meal-card img {
+        height: 220px;
       }
 
       .order-box {
@@ -677,6 +684,7 @@
   <!-- الهيدر -->
 
   <header>
+
     <div class="container">
 
       <nav>
@@ -703,6 +711,7 @@
       </nav>
 
     </div>
+
   </header>
 
 
@@ -721,10 +730,13 @@
           </div>
 
           <h1>
+
             وجبة كفتة
+
             <span>
               تكفي 4 أشخاص
             </span>
+
           </h1>
 
           <p class="description">
@@ -756,6 +768,7 @@
             <a
               href="https://wa.me/201030085653?text=أنا%20عاوز%20أطلب%20وجبة%20الكفتة%20العائلية%20بـ%20199%20جنيه"
               target="_blank"
+              rel="noopener"
               class="button button-primary">
 
               اطلب على واتساب
@@ -765,6 +778,7 @@
             <a
               href="https://www.google.com/maps/search/?api=1&query=ميت+ضافر+طريق+المقابر+القديمة"
               target="_blank"
+              rel="noopener"
               class="button button-secondary">
 
               افتح الموقع على الخريطة
@@ -781,8 +795,9 @@
           <div class="image-border">
 
             <img
-              src="offer.png"
-              alt="وجبة كفتة عائلية من طلباتك هنا">
+              src="https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=1200&q=90"
+              alt="وجبة كفتة مشوية مع العيش والسلطات"
+              loading="eager">
 
           </div>
 
@@ -818,79 +833,100 @@
           </h2>
 
           <p>
-            وجبة كاملة تكفي لمة العيلة
+            كل اللي محتاجه للّمة في عرض واحد
           </p>
 
         </div>
 
+
         <div class="meal-cards">
 
-          <div class="meal-card">
+          <article class="meal-card">
 
-            <div class="meal-icon">
-              🥩
+            <img
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=85"
+              alt="كفتة مشوية"
+              loading="lazy">
+
+            <div class="card-content">
+
+              <h3>
+                كفتة مشوية
+              </h3>
+
+              <p>
+                كفتة متبلة ومشوية على الفحم بطعم يفتح النفس.
+              </p>
+
             </div>
 
-            <h3>
-              كفتة مشوية
-            </h3>
-
-            <p>
-              كفتة متبلة ومشوية على الفحم
-            </p>
-
-          </div>
+          </article>
 
 
-          <div class="meal-card">
+          <article class="meal-card">
 
-            <div class="meal-icon">
-              🫓
+            <img
+              src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=85"
+              alt="عيش طازة"
+              loading="lazy">
+
+            <div class="card-content">
+
+              <h3>
+                عيش طازة
+              </h3>
+
+              <p>
+                عيش طازة وسخن يكمل طعم الوجبة.
+              </p>
+
             </div>
 
-            <h3>
-              عيش طازة
-            </h3>
-
-            <p>
-              عيش طازة يكمل طعم الوجبة
-            </p>
-
-          </div>
+          </article>
 
 
-          <div class="meal-card">
+          <article class="meal-card">
 
-            <div class="meal-icon">
-              🥣
+            <img
+              src="https://images.unsplash.com/photo-1577805947697-89e18249d767?auto=format&fit=crop&w=800&q=85"
+              alt="طحينة"
+              loading="lazy">
+
+            <div class="card-content">
+
+              <h3>
+                طحينة
+              </h3>
+
+              <p>
+                طحينة كريمي بطعم مميز مع الكفتة المشوية.
+              </p>
+
             </div>
 
-            <h3>
-              طحينة
-            </h3>
-
-            <p>
-              طحينة كريمي بطعم مميز
-            </p>
-
-          </div>
+          </article>
 
 
-          <div class="meal-card">
+          <article class="meal-card">
 
-            <div class="meal-icon">
-              🥗
+            <img
+              src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=85"
+              alt="سلطات متنوعة"
+              loading="lazy">
+
+            <div class="card-content">
+
+              <h3>
+                سلطات متنوعة
+              </h3>
+
+              <p>
+                تشكيلة سلطات طازة وفريش تكمل الوجبة.
+              </p>
+
             </div>
 
-            <h3>
-              سلطات متنوعة
-            </h3>
-
-            <p>
-              تشكيلة سلطات طازة وفريش
-            </p>
-
-          </div>
+          </article>
 
         </div>
 
@@ -958,11 +994,12 @@
   </footer>
 
 
-  <!-- زر واتساب -->
+  <!-- زر واتساب العائم -->
 
   <a
     href="https://wa.me/201030085653?text=أنا%20عاوز%20أطلب%20وجبة%20الكفتة%20العائلية"
     target="_blank"
+    rel="noopener"
     class="floating-whatsapp"
     aria-label="الطلب عبر واتساب">
 
